@@ -1,6 +1,8 @@
 <?php
-$access_token = '0HSB7lPEM4zUCOYk9qQVNRJJndXzEeVW59UdLPzKN+NVPUAvbA9RCHCR3+pR57bHMZM1gsneTm5Dzd6iLH9fCJJlKRjD6T5Y0ierWK0e9vdgJ6tvqUMAA9tC6PsbsTYtzcpcYEHjTo+RWLMg0HrLHgdB04t89/1O/w1cDnyilFU=';
 
+$access_token = '0HSB7lPEM4zUCOYk9qQVNRJJndXzEeVW59UdLPzKN+NVPUAvbA9RCHCR3+pR57bHMZM1gsneTm5Dzd6iLH9fCJJlKRjD6T5Y0ierWK0e9vdgJ6tvqUMAA9tC6PsbsTYtzcpcYEHjTo+RWLMg0HrLHgdB04t89/1O/w1cDnyilFU=';
+$proxy = 'velodrome.usefixie.com:80';
+$proxyauth = 'fixie:gR62E1MpgXhcKpo';
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
@@ -37,6 +39,8 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			curl_setopt($ch, CURLOPT_PROXY, $proxy);
+			curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
 			$result = curl_exec($ch);
 			curl_close($ch);
 
